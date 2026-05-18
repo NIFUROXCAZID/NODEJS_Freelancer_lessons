@@ -1,0 +1,26 @@
+<h1>Products</h1>
+
+<a href="/products/add">Add product</a>
+
+<h2>List</h2>
+<ul>
+  <% products.forEach(p=> { %>
+    <li>
+      <%= p.name %> - <%= p.price %>
+    </li>
+    <% }) %>
+</ul>
+
+<h2>Table</h2>
+<table border="1">
+  <% products.forEach(p=> { %>
+    <tr>
+      <td>
+        <%= p.name %>
+      </td>
+      <td>
+        <%= p.price %>
+      </td>
+    </tr>
+    <% }) %>
+</table>
