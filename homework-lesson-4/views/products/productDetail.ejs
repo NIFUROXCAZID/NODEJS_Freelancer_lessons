@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <%-include('../components/mainMenu',{activePage:'products'}) %>
+
+    <main>
+      <div class="product-detail">
+        Назва книги : <%=product.title %>
+        <br />Автор книги : <%=product.author%>
+        <br />Рік видання книги : <%=product.year%> рік
+        <br />Ціна книги : <%=product.price%> грн
+        <img style="width: 50px; display: block;" src=<%=product.image%> alt="Image">
+      </div>
+      <hr />
+      <a href="/products">До списку товарів</a>
+      <hr />
+    </main>
+    <%-include('../components/footer') %>
+  </body>
+</html>

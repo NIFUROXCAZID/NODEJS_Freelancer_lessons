@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>
+        <%= title %>
+      </h1>
+      <%-include('components/mainMenu', {activePage:'main'}) %>
+        <p>Welcome to <%= title %>
+        </p>
+        <p>Задача. Створіть “Менеджер книг” (books_manager): CRUD-додаток для роботи з бібліотекою книг. Кожна книга має назву, автора, рік видання. Дані зберігайте у файлі books.json. Додайте пошук за автором та фільтрацію за роком. Використовуйте шаблонізатор EJS.</p>
+        <p>Я б ще напевно посилання на картинку додав чи може краще як у прикладі домашки картинки в public сложить.</p>
+    </main>
+    <%-include('components/footer') %>
+  </body>
+</html>

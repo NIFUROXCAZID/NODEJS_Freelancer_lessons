@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= product.id? 'Редагування товару' : 'Створення товару' %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <h1><%= product.id? 'Редагування товару' : 'Створення товару' %></h1>
+    <%-include('../components/mainMenu',{activePage:'products'}) %>
+
+    <main>
+      <form
+        action="<%=product.id?`/products/update/${product.id}`:'/products/create'%>"
+        method="post"
+        class="product-form"
+      >
+        <div>
+          <label>
+            Назва книги:
+            <input type="text" name="title" value="<%=product.title  %>" />
+          </label>
+        </div>
+        <div>
+          <label>
+            Автор книги:
+            <input type="text" name="author" value="<%=product.author  %>" />
+          </label>
+        </div>
+        <div>
+          <label>
+            Рік видання книги:
+            <input type="text" name="year" value="<%=product.year  %>" />
+          </label>
+        </div>
+        <div>
+          <label>
+            Посилання на картинку книги:
+            <input type="text" name="image" value="<%=product.image  %>" />
+          </label>
+        </div>
+        <div>
+          <label>
+            Ціна книги:
+            <input type="number" name="price" value="<%=product.price  %>" />
+          </label>
+        </div>
+        <button><%= product.id? 'Зберегти' : 'Створити'%></button>
+      </form>
+    </main>
+    <%-include('../components/footer') %>
+  </body>
+</html>
