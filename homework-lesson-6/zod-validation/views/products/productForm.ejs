@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= product.id? 'Редагування автомобіля' : 'Створення автомобіля' %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script>
+      function handleImageInput(event) {
+        const file = event.target.files[0]
+
+        if (file) {
+          const imgEl = document.getElementById('productPhoto')
+          const reader = new FileReader()
+          reader.onload = function (e) {
+            imgEl.src = e.target.result
+          }
+          reader.readAsDataURL(file)
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1><%= product.id? 'Редагування автомобіля' : 'Створення автомобіля' %></h1>
+    <%-include('../components/mainMenu',{activePage:'products'}) %>
+
+    <main>
+      <%if(errors?.length){ %>
+      <h1>Помилки валідації!</h1>
+      <ul>
+        <% for (const error of errors) {%>
+          <li>
+            <%= error %>
+          </li>
+          <% } %>
+      </ul>
+      <hr />
+      <%} %>
+      <form
+        action="<%=product.id?`/products/update/${product.id}`:'/products/create'%>"
+        method="post"
+        class="product-form"
+        enctype="multipart/form-data"
+      >
+        <div>
+          <label>
+            Марка автомобіля:
+            <input type="text" name="title" value="<%=product.title  %>" />
+          </label>
+        </div>
+        <div>
+          <label>
+            Рік випуску:
+            <input type="number" name="year" value="<%=product.year  %>" />
+          </label>
+        </div>
+        <div>
+          <label>
+            Номер автомобіля:
+            <input type="text" name="number" value="<%=product.number  %>" />
+          </label>
+        </div>
+        <div>
+          <label>
+            Зображення автомобіля:
+            <input
+              type="file"
+              name="photo"
+              value="<%=product.photo  %>"
+              accept="image/*"
+              onchange="handleImageInput(event)"
+            />
+          </label>
+          <img
+            id="productPhoto"
+            src="<%=product.photo?`/${product.photo}`:'/images/photo-not-available.jpg'  %>"
+            alt="product"
+          />
+        </div>
+        <button><%= product.id? 'Зберегти' : 'Створити'%></button>
+      </form>
+    </main>
+    <%-include('../components/footer') %>
+  </body>
+</html>
