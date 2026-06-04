@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <%-include('../components/mainMenu',{activePage:'products'}) %>
+    
+    <main>
+      <div class="product-detail">
+        <p>Марка автомобіля: <%=product.title %></p>
+        <p>Рік випуску: <%=product.year %></p>
+        <p>Номер автомобіля: <%=product.number %>
+        </p>
+        <p>Марка авто: <%=product.brand.name %>
+        </p>
+        <p>Власник: <%=product.owner.name %>
+        </p>
+        <p>Місто: <%=product.owner.location %></p>
+        <%= console.log(product) %>
+        <div style="display: block;">
+          <img style="width: 120px;" src="<%=product.photo ??'/images/photo-not-available.jpg'  %>" alt="" />
+        </div>
+      </div>
+      <hr />
+      <a href="/products">До списку автомобілів</a>
+      <hr />
+    </main>
+    <%-include('../components/footer') %>
+  </body>
+</html>

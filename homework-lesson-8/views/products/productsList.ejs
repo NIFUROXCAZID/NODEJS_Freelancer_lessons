@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script>
+      async function deleteProduct(id) {
+        try {
+          const response = await fetch('/products', {
+            method: 'delete',
+            headers: {
+              'content-type': 'application/json',
+            },
+            body: JSON.stringify({ id }),
+          })
+          if (response.ok) {
+            window.location.reload()
+          }
+        } catch (error) {
+          console.log(error)
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <%-include('../components/mainMenu',{activePage:'products'}) %>
+
+    <main>
+      <div>
+        <a href="/products/create">+ Додати автомобіль</a>
+      </div>
+      <hr />
+      <form method="GET" action="/products">
+        <select name="brand">
+          <option value="">Всі марки</option>
+          <% brands.forEach(b=> { %>
+            <option value="<%= b._id %>" <%=selectedBrand===String(b._id) ? 'selected' : '' %>>
+              <%= b.name %>
+            </option>
+            <% }) %>
+        </select>
+        <button type="submit">Фільтрувати</button>
+      </form>
+      <hr />
+      <table class="product-table">
+        <tbody>
+          <% products.forEach(product=>{ %>
+          <tr>
+            <td>
+              <img
+                src="<%= product.photo ??'/images/photo-not-available.jpg'  %>"
+                alt=""
+              />
+            </td>
+            <td>
+              <a href="<%= `/products/${product._id}` %>">
+                <%=product.title %>
+              </a>
+            </td>
+            <td><%=product.year %></td>
+            <td>
+              <%=product.number %>
+            </td>
+            <td>
+              <%=product.brand.name %>
+            </td>
+            <td>
+              <%=product.owner.name %>
+            </td>
+            <td>
+              <%=product.owner.location %>
+            </td>
+            <td>
+              <a href="<%= `/products/update/${product._id}`%>">Редагувати</a>
+            </td>
+            <td>
+              <button onclick="deleteProduct('<%= product._id %>')">Delete</button>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      <hr />
+    </main>
+    <%-include('../components/footer') %>
+  </body>
+</html>
