@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= formTitle %></title>
+  <link rel="stylesheet" href="/stylesheets/main.css">
+  <link rel="stylesheet" href="/stylesheets/posts/list.css">
+  <script>
+    function handlePostImgPreview(event) {
+      const file = event.target.files[0];
+      if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const imgElement = document.getElementById('imgPreview');
+          if (imgElement) imgElement.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  </script>
+</head>
+<body>
+  <%- include('../sections/header', { title: formTitle }) %>
+  <div class="container">
+    <h1><%= formTitle %></h1>
+    <% if (typeof errors !== 'undefined' && errors.length) { %>
+      <div class="error-message">
+        <ul>
+          <% errors.forEach(function(error) { %>
+            <li><%= error %></li>
+          <% }) %>
+        </ul>
+      </div>
+    <% } %>
+    <form action="<%= formAction %>" method="POST" class="entity-form" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="post">Текст поста</label>
+        <textarea id="post" name="post" required><%= post ? post.post : '' %></textarea>
+      </div>
+      <div class="form-group">
+        <label for="img">Зображення</label>
+        <div class="img-upload-preview">
+          <input type="file" id="img" name="img" accept="image/*" onchange="handlePostImgPreview(event)">
+          <img
+            id="imgPreview"
+            src="<%= post && post.img ? '/' + post.img : '/photo-not-available.jpg' %>"
+            alt="Post Image Preview"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="authors">Автори</label>
+        <select id="authors" name="authors" multiple required>
+          <% users.forEach(function(user) { %>
+            <option value="<%= user._id %>" <%= post && post.authors && post.authors.map(a=>a._id?.toString?.()||a.toString()).includes(user._id.toString()) ? 'selected' : '' %>><%= user.name %></option>
+          <% }) %>
+        </select>
+      </div>
+      <button type="submit" class="btn-save">Зберегти</button>
+      <a href="/posts" class="btn-cancel">Скасувати</a>
+    </form>
+  </div>
+  <%- include('../sections/footer') %>
+</body>
+</html>

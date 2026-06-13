@@ -1,0 +1,85 @@
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f7f7f7;
+}
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #0001;
+  padding: 32px;
+}
+h1 {
+  color: #2d3a4a;
+  margin-bottom: 24px;
+}
+.types-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 24px;
+}
+.types-table th,
+.types-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+.types-table th {
+  background: #f0f4f8;
+  color: #3a4a5a;
+}
+.types-table tr:hover {
+  background: #f9fafb;
+}
+.btn-add,
+.btn-edit,
+.btn-delete,
+.btn-save,
+.btn-cancel {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  margin-right: 8px;
+  transition: background 0.2s;
+}
+.btn-add {
+  background: #4caf50;
+  color: #fff;
+}
+.btn-edit {
+  background: #2196f3;
+  color: #fff;
+}
+.btn-delete {
+  background: #f44336;
+  color: #fff;
+}
+.btn-save {
+  background: #1976d2;
+  color: #fff;
+}
+.btn-cancel {
+  background: #bdbdbd;
+  color: #fff;
+}
+.entity-form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+.form-group {
+  margin-bottom: 18px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  color: #333;
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

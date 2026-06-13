@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Список користувачів</title>
+  <link rel="stylesheet" href="/stylesheets/main.css">
+  <link rel="stylesheet" href="/stylesheets/users/list.css">
+  <script src="/javascripts/RequestManager.js"></script>
+</head>
+<body>
+  <%- include('../sections/header', { title: 'Користувачі' }) %>
+  <div class="container">
+        <form class="filter-form" method="get" action="/users">
+          <div class="form-group">
+            <label for="name">Ім'я користувача</label>
+            <input type="text" id="name" name="name" value="<%= typeof query !== 'undefined' && query.name ? query.name : '' %>" placeholder="Пошук за ім'ям">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" value="<%= typeof query !== 'undefined' && query.email ? query.email : '' %>" placeholder="Пошук за email">
+          </div>
+          <div class="form-group">
+            <label for="type">Роль</label>
+            <select id="type" name="type">
+              <option value="">Всі ролі</option>
+              <% if (typeof types !== 'undefined' && types.length) { %>
+                <% types.forEach(function(type) { %>
+                  <option value="<%= type._id %>" <%= query && query.type == type._id ? 'selected' : '' %>><%= type.title %></option>
+                <% }) %>
+              <% } %>
+            </select>
+          </div>
+          <button type="submit" class="btn-save">Фільтрувати</button>
+          <a href="/users" class="btn-cancel">Скинути</a>
+        </form>
+    <h1>Список користувачів</h1>
+    <a class="btn-add" href="/users/register">Додати користувача</a>
+    <table class="users-table">
+      <thead>
+        <tr>
+          <th>Фото</th>
+          <th>Ім'я користувача</th>
+          <th>Email</th>
+          <th>Роль</th>
+          <th>Дії</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.forEach(function(user) { %>
+          <tr>
+            <td>
+              <% if (user.img) { %>
+                <img src="<%= user.img %>" alt="img" style="max-width:48px;max-height:48px;border-radius:6px;" />
+              <% } else { %>
+                <span style="color:#bbb;">—</span>
+              <% } %>
+            </td>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td><%= user.type.title %></td>
+            <td>
+              <a href="/users/register/<%= user._id %>" class="btn-edit">Редагувати</a>
+              <button class="btn-delete" onclick="deleteUser('<%= user._id %>')">Видалити</button>
+                <script>
+                  async function deleteUser(id) {
+                    if (!confirm('Ви впевнені, що хочете видалити користувача?')) return;
+                    await RequestManager.deleteRequest('/users', id);
+                    window.location.reload();
+                  }
+                </script>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <%- include('../sections/footer') %>
+</body>
+</html>

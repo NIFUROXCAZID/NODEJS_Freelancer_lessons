@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= formTitle %></title>
+  <link rel="stylesheet" href="/stylesheets/main.css">
+  <link rel="stylesheet" href="/stylesheets/users/list.css">
+  <script>
+    function handleUserImgPreview(event) {
+      const file = event.target.files[0];
+      if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const imgElement = document.getElementById('imgPreview');
+          if (imgElement) imgElement.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  </script>
+</head>
+<body>
+  <%- include('../sections/header', { title: formTitle }) %>
+  <div class="container">
+    <h1><%= formTitle %></h1>
+    <% if (typeof errors !== 'undefined' && errors.length) { %>
+      <div class="error-message">
+        <ul>
+          <% errors.forEach(function(error) { %>
+            <li><%= error %></li>
+          <% }) %>
+        </ul>
+      </div>
+    <% } %>
+    <form action="<%= formAction %>" method="POST" class="entity-form" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="name">Ім'я користувача</label>
+        <input type="text" id="name" name="name" value="<%= user ? user.name : '' %>" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" value="<%= user ? user.email : '' %>" required>
+      </div>
+      <div class="form-group">
+        <label for="age">Вік</label>
+        <input type="number" id="age" name="age" min="18" max="120" value="<%= user ? user.age : '' %>" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Пароль</label>
+        <input type="password" id="password" name="password" value="" <%= user ? '' : 'required' %>>
+      </div>
+      <div class="form-group">
+        <label for="type">Тип користувача</label>
+        <select id="type" name="type" required>
+          <option value="">---</option>
+          <% if (typeof types !== 'undefined' && types.length) { %>
+            <% types.forEach(function(type) { %>
+              <option value="<%= type._id %>" <%= user && user.type && (user.type._id?.toString?.()||user.type.toString()) === type._id.toString() ? 'selected' : '' %>><%= type.title %></option>
+            <% }) %>
+          <% } %>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="userImg">Фото</label>
+        <div class="img-upload-preview">
+          <input type="file" id="userImg" name="userImg" accept="image/*" onchange="handleUserImgPreview(event)">
+          <img
+            id="imgPreview"
+            src="<%= user && user.img ? '/' + user.img : '/photo-not-available.jpg' %>"
+            alt="User Image Preview"
+          />
+        </div>
+      </div>
+      <button type="submit" class="btn-save">Зберегти</button>
+      <a href="/users" class="btn-cancel">Скасувати</a>
+    </form>
+  </div>
+  <%- include('../sections/footer') %>
+</body>
+</html>

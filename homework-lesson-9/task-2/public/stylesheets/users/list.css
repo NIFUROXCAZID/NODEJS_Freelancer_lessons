@@ -1,0 +1,158 @@
+/* Filter form styles */
+.filter-form {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+.filter-form .form-group {
+  margin-bottom: 0;
+  min-width: 180px;
+}
+.filter-form label {
+  display: block;
+  margin-bottom: 4px;
+  color: #1976d2;
+  font-weight: 500;
+}
+.filter-form input[type='text'] {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+  background: #f9fafb;
+  transition: border 0.2s;
+}
+.filter-form input[type='text']:focus {
+  border-color: #1976d2;
+  outline: none;
+}
+.filter-form .btn-save {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-right: 10px;
+}
+.filter-form .btn-save:hover {
+  background: #125ea7;
+}
+.filter-form .btn-cancel {
+  background: #bdbdbd;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.filter-form .btn-cancel:hover {
+  background: #888;
+}
+/* Image upload preview styles for user form */
+.img-upload-preview {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 12px;
+}
+.img-upload-preview img {
+  max-width: 80px;
+  max-height: 80px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px #0002;
+  background: #f4f7fa;
+  display: block;
+}
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f7f7f7;
+}
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #0001;
+  padding: 32px;
+}
+h1 {
+  color: #2d3a4a;
+  margin-bottom: 24px;
+}
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 24px;
+}
+.users-table th,
+.users-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+.users-table th {
+  background: #f0f4f8;
+  color: #3a4a5a;
+}
+.users-table tr:hover {
+  background: #f9fafb;
+}
+.btn-add,
+.btn-edit,
+.btn-delete,
+.btn-save,
+.btn-cancel {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  margin-right: 8px;
+  transition: background 0.2s;
+}
+.btn-add {
+  background: #4caf50;
+  color: #fff;
+}
+.btn-edit {
+  background: #2196f3;
+  color: #fff;
+}
+.btn-delete {
+  background: #f44336;
+  color: #fff;
+}
+.btn-save {
+  background: #1976d2;
+  color: #fff;
+}
+.btn-cancel {
+  background: #bdbdbd;
+  color: #fff;
+}
+.entity-form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+.form-group {
+  margin-bottom: 18px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  color: #333;
+}
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

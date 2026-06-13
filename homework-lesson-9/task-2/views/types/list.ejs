@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Список типів</title>
+  <link rel="stylesheet" href="/stylesheets/main.css">
+  <link rel="stylesheet" href="/stylesheets/types/list.css">
+  <script src="/javascripts/RequestManager.js"></script>
+</head>
+<body>
+  <%- include('../sections/header', { title: 'Типи' }) %>
+  <div class="container">
+    <h1>Список типів</h1>
+    <a class="btn-add" href="/types/register">Додати тип</a>
+    <table class="types-table">
+      <thead>
+        <tr>
+          <th>Назва</th>
+          <th>Дії</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% types.forEach(function(type) { %>
+          <tr data-type-id="<%= type._id %>">
+            <td><%= type.title %></td>
+            <td>
+              <a href="/types/register/<%= type._id %>" class="btn-edit">Редагувати</a>
+              <button class="btn-delete" onclick="deleteType('<%= type._id %>')">Видалити</button>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <script>
+      async function deleteType(id) {
+        if (!confirm('Ви впевнені, що хочете видалити тип?')) return;
+        await RequestManager.deleteRequest('/types', id);
+        window.location.reload();
+      }
+    </script>
+  </div>
+  <%- include('../sections/footer') %>
+</body>
+</html>

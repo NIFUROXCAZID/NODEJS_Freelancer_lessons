@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Список постів</title>
+  <link rel="stylesheet" href="/stylesheets/main.css">
+  <link rel="stylesheet" href="/stylesheets/posts/list.css">
+</head>
+<body>
+  <%- include('../sections/header', { title: 'Пости' }) %>
+  <div class="container">
+    <h1>Список постів</h1>
+    <main>
+      <form class="filter-form" method="get" action="/posts">
+        <div class="form-group">
+          <label>Текст поста</label>
+          <input type="text" name="post" value="<%= query?.post || '' %>" />
+        </div>
+        <div class="form-group">
+          <label>Автор</label>
+          <select name="author">
+            <option value="">Всі автори</option>
+            <% users.forEach(user=> { %>
+              <option value="<%= user._id %>" <%=query?.author==user._id ? 'selected' : '' %>>
+                <%= user.name %>
+              </option>
+              <% }) %>
+          </select>
+        </div>
+        <!-- <div class="form-group">
+          <label>Мін. к-сть коментарів</label>
+          <input type="number" min="0" name="minComments" value="<%= query?.minComments || '' %>" />
+        </div> -->
+        <button class="btn-save" type="submit">
+          Фільтрувати
+        </button>
+        <a href="/posts" class="btn-cancel">Скинути</a>
+      </form>
+      <% posts.forEach(post => { %>
+      <div class="post">
+        <div class="post-container">
+          <div class="post-header">
+            <% if (post.img) { %>
+              <img src="/<%= post.img %>" alt="Post Image" class="post-image" />
+            <% } %>
+            <span><%= post.post %></span>
+          </div>
+          <button onclick="deletePost('<%= post._id %>')" class="btn-delete">Видалити пост</button>
+            <script src="/javascripts/RequestManager.js"></script>
+            <script>
+              async function deletePost(id) {
+                if (!confirm('Ви впевнені, що хочете видалити пост?')) return;
+                await RequestManager.deleteRequest('/posts', id);
+                window.location.reload();
+              }
+            </script>
+          <a href="/posts/register/<%= post._id %>" class="btn-edit">Редагувати</a>
+        </div>
+        <div class="post-meta">
+          <b>Автори:</b>
+          <% if (post.authors && post.authors.length) { %>
+            <ul style="margin:0;padding-left:18px;display:inline;">
+              <% post.authors.forEach(function(author) { %>
+                <li style="display:inline;margin-right:8px;"><%= author.name %></li>
+              <% }) %>
+            </ul>
+          <% } %>
+
+        </div>
+        <div class="comments">
+          <h3>Коментарі</h3>
+          <div class="comments-container">
+            <% post.comments.forEach(comment => { %>
+            <div class="comment">
+              <p>
+                <strong><%= comment.commenter && comment.commenter.name ? comment.commenter.name : '' %>:</strong> <%= comment.commentText %>
+              </p>
+              <button onclick="RequestManager.deleteRequest('/posts/comments/<%= post._id %>', '<%= comment._id %>')" class="btn-delete">Видалити коментар</button>
+            </div>
+            <% }); %>
+          </div>
+          <form action="/posts/comments/<%= post._id%>" method="POST">
+            <input type="text" name="commentText" placeholder="Ваш коментар" required />
+            <select name="commenter" required>
+              <% users.forEach(user => { %>
+              <option value="<%= user._id %>"><%= user.name %></option>
+              <% }); %>
+            </select>
+            <button type="submit">Додати коментар</button>
+          </form>
+        </div>
+        <hr />
+      </div>
+      <% }); %>
+      <a class="btn-add" href="/posts/register">Додати пост</a>
+    </main>
+  </div>
+  <%- include('../sections/footer') %>
+  <script src="/javascripts/RequestManager.js"></script>
+  <script>
+    document.querySelectorAll('.comments form').forEach((form) => {
+      form.addEventListener('submit', function () {
+        location.reload()
+      })
+    })
+  </script>
+</body>
+</html>
