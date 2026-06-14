@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Логін</title>
+
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <link rel="stylesheet" href="/stylesheets/main.css" />
+</head>
+
+<body>
+  <%- include('../sections/header.ejs') %>
+
+    <div class="container">
+      <h1>Авторизація</h1>
+
+      <form action="/login" method="post">
+        <div>
+          <label>Ім'я користувача</label>
+          <input type="text" name="username" required />
+        </div>
+
+        <div>
+          <button type="submit">Увійти</button>
+        </div>
+      </form>
+    </div>
+
+    <%- include('../sections/footer') %>
+</body>
+
+</html>

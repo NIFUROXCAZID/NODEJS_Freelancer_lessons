@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Додати товар</title>
+
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <link rel="stylesheet" href="/stylesheets/main.css" />
+</head>
+
+<body>
+  <%- include('../sections/header') %>
+
+    <div class="container">
+
+      <h1>Додати товар</h1>
+
+      <form action="/products/add" method="post">
+
+        <div>
+          <label>Назва товару</label>
+          <input type="text" name="name" required />
+        </div>
+
+        <div>
+          <label>Ціна</label>
+          <input type="number" name="price" min="0" required />
+        </div>
+
+        <div>
+          <label>Кількість</label>
+          <input type="number" name="quantity" min="0" required />
+        </div>
+
+        <div>
+          <button type="submit">Додати</button>
+        </div>
+
+      </form>
+
+    </div>
+
+    <%- include('../sections/footer') %>
+</body>
+
+</html>

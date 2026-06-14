@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/main.css" />
+  </head>
+  <body>
+    
+    <div class="container">
+      <%- include('sections/header') %>
+      <main>
+        <h1><%= title %> Домашня робота 9 task-1</h1>
+        <p>Welcome to <%= title %></p>
+        <p>Задача 1. Розробити додаток для операцій з товарами (назва, ціна, кількість) з такими маршрутами:
+          <br>
+        /products – відображаємо список товарів,
+        <br>
+        /login – при авторизації додаємо до сесії ім’я користувача і переходимо до сторінки «products» (при цьому товари відображаються у порядку зростання ціни),
+        <br>
+        /addProduct– додаємо товар і переходимо на сторінку «products» (при цьому товари відображаються у порядку спадання ціни)
+        <br>
+        Подумайте як передати інформацію про сортування товарів при переході на сторінку «/products» (використати сесії/куки)
+</p>
+      </main>
+      <%- include('sections/footer') %>
+    </div>
+  </body>
+</html>
