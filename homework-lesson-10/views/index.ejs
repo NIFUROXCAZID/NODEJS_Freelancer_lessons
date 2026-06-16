@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <main>
+      <h1><%= title %></h1>
+      <%-include('components/mainMenu', {activePage:'main'}) %>
+      <p>Welcome to <%= title %></p>
+      <h2>Для адміна</р>
+      <ul>
+        <li>Username: <strong>Super Admin</strong></li>
+        <li>Email: <strong>admin@gmail.com</strong></li>
+        <li>Пароль: <strong>123</strong></li>
+    </ul>
+      <h2>Для менеджера</р>
+      <ul>
+        <li>Username: <strong>manager</strong></li>
+        <li>Email: <strong>manager@gmail.com</strong></li>
+        <li>Пароль: <strong>123</strong></li>
+      </ul>
+        <h2>Для юзерів</р>
+        <ul>
+          <li>Username: <strong>user1</strong></li>
+          <li>Email: <strong>user1@gmail.com</strong></li>
+          <li>Пароль: <strong>123</strong></li>
+        </ul>
+    </main>
+    <%-include('components/footer') %>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+<body>
+  <%- include('../components/mainMenu', { activePage: 'register' , user: user }) %>
+    <main>
+      <h1>Реєстрація</h1>
+      <% if (error) { %>
+        <p style="color:red;">
+          <%= error %>
+        </p>
+        <% } %>
+          <form method="POST" action="/auth/register">
+            <div>
+              <label>Username:</label>
+              <input type="text" name="username" required />
+            </div>
+            <div>
+              <label>Email:</label>
+              <input type="email" name="email" required />
+            </div>
+            <div>
+              <label>Пароль:</label>
+              <input type="password" name="password" required />
+            </div>
+            <button type="submit">Зареєструватись</button>
+          </form>
+    </main>
+    <%- include('../components/footer') %>
+</body>
+</html>
