@@ -27,23 +27,19 @@ class AuthController {
 
       await TokenService.saveRefreshToken(user._id, tokens.refreshToken)
 
-      res.cookie('accessToken', tokens.accessToken, {
+      const cookieOptions = {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite:
-          process.env.NODE_ENV === 'production'
-            ? 'none'
-            : 'lax',
+        secure: true,
+        sameSite: 'none',
+      }
+      
+      res.cookie('accessToken', tokens.accessToken, {
+        ...cookieOptions,
         maxAge: 15 * 60 * 1000,
       })
-
+      
       res.cookie('refreshToken', tokens.refreshToken, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite:
-          process.env.NODE_ENV === 'production'
-            ? 'none'
-            : 'lax',
+        ...cookieOptions,
         maxAge: 7 * 24 * 60 * 60 * 1000,
       })
 
