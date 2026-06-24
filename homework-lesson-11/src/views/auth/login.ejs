@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+
+<body>
+  <%- include('../components/mainMenu', { activePage: 'login' , user: user }) %>
+    <main>
+      <h1>Форма логіну</h1>
+      <% if (error) { %>
+        <p style="color:red;">
+          <%= error %>
+        </p>
+        <% } %>
+          <form method="POST" action="/auth/login">
+            <div>
+              <label>Email:</label>
+              <input type="email" name="email" required />
+            </div>
+            <div>
+              <label>Пароль:</label>
+              <input type="password" name="password" required />
+            </div>
+            <button type="submit">Увійти</button>
+          </form>
+    </main>
+    <%- include('../components/footer') %>
+</body>
+</html>
