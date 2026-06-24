@@ -41,6 +41,7 @@ const ProductCard = forwardRef(function ProductCard(
         <img
           src={imageSrc}
           alt={product.title}
+          crossOrigin="anonymous"
           style={{ width: '120px', maxHeight: "80px" }}
         />
       </td>
