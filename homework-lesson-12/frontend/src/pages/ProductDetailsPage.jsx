@@ -66,6 +66,7 @@ export default function ProductDetailsPage() {
           <img
             src={imageSrc}
             alt={product.title}
+            crossOrigin="anonymous"
             style={{ width: '120px', maxHeight: "80px" }}
           />
         </div>
