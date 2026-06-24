@@ -78,7 +78,7 @@ import cors from 'cors'
 //  * @returns {import('express').RequestHandler}
 //  */
 export function corsPolicy({
-  allowedOrigins = ['http://127.0.0.1:5501/'],
+  allowedOrigins = ['http://127.0.0.1:5501/', 'https://nodejs-homework-lesson-12.netlify.app'],
   allowNoOrigin = true,
   credentials = true,
 } = {}) {
