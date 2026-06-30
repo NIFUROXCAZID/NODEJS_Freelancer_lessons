@@ -50,7 +50,8 @@ class ProductsController {
       console.log('GET PRODUCTS ERROR:', error)
 
       return res.status(500).json({
-        message: 'Failed to load products',
+        message: error.message,
+        console.log('GET PRODUCTS ERROR:', error),
       })
     }
   }
