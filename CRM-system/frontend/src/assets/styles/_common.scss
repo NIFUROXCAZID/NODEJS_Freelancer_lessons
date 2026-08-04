@@ -1,0 +1,383 @@
+@use "./abstracts/index" as *;
+// --INFO-SECTIONS------------------------------------------------------
+// СТИЛІ ЯКІ В ЦІЛОМУ ПОКРАЩУЮТЬ ЕЛЕМЕНТИ І ПЕВНІ КЛАСИ ЗАГАЛЬНОГО ПРИЗНАЧЕННЯ
+// Зупинка при прокручуванні за 150px до елемента
+
+html {
+  scroll-behavior: smooth;
+}
+
+h2 {
+  scroll-margin-top: toRem(150)
+}
+
+section > section {
+  margin-top: toRem(35);
+}
+section,
+section > section > div {
+  & > :last-child {
+    margin-bottom: 0;
+  }
+  &__contact {
+    margin-top: toRem(0);
+    margin-bottom: toRem(0);
+  }
+  &__container {
+    & > h1 {
+      @extend %main-title;
+      @extend %abzats-line;
+    }
+    & > h2 {
+      @extend %default-title;
+      margin-bottom: toRem(15);
+      @extend %abzats-line;
+    }
+    & > p {
+      @extend %default-text;
+      margin-bottom: toRem(25);
+    }
+  }
+  & > h1 {
+    @extend %main-title;
+    @extend %abzats-line;
+  }
+  & > h2 {
+    @extend %default-title;
+    margin-bottom: toRem(10);
+    @extend %abzats-line;
+  }
+  & > p {
+    @extend %default-text;
+    margin-bottom: toRem(20);
+    & em {
+      font-style: italic;
+    }
+    & a {
+      text-decoration: underline;
+      color: var(--main-text);
+    }
+    & strong {
+      font-weight: bold;
+    }
+  }
+
+  & h3 {
+    @extend %sub-title-h3;
+  }
+  & h4 {
+    @extend %sub-title-h4;
+  }
+  // Правильний варіант таблиці
+  & figure {
+    overflow-x: auto;
+    width: 100%;
+    margin-bottom: toRem(25);
+    & table {
+      table-layout: fixed;
+      border-spacing: 0;
+      border-collapse: collapse;
+
+      display: table;
+      min-width: 100%;
+      width: auto;
+      & tbody {
+        & tr {
+          &:nth-child(even) {
+            background-color: var(--table-bg-1);
+          }
+          &:nth-child(odd) {
+            background-color: var(--table-bg-2);
+          }
+          & td {
+            padding: toRem(10) toRem(0);
+            @include adaptiveValue("padding-left", 4, 2);
+            @include adaptiveValue("padding-right", 4, 2);
+            @include adaptiveValue("font-size", 16, 12);
+            border: toRem(1) solid var(--main-text);
+            text-align: center;
+            color: var(--main-text);
+            @extend %default-font;
+            & li {
+              &::marker {
+                font-size: toRem(16);
+              }
+            }
+          }
+          & .strong {
+            font-weight: bold;
+            border: none;
+            border-bottom: toRem(1) solid var(--main-text);
+          }
+        }
+      }
+      & thead {
+        & tr {
+          &:nth-child(even) {
+            background-color: var(--table-bg-1);
+          }
+          &:nth-child(odd) {
+            background-color: var(--table-bg-2);
+          }
+          & th {
+            padding: toRem(10) toRem(0);
+            @include adaptiveValue("padding-left", 4, 2);
+            @include adaptiveValue("padding-right", 4, 2);
+            @include adaptiveValue("font-size", 16, 12);
+            border: toRem(1) solid var(--main-text);
+            text-align: center;
+            color: var(--main-text);
+            @extend %default-font;
+
+            & li {
+              // list-style-type: disc; Баговало в safari!
+              &::marker {
+                font-size: toRem(16);
+              }
+            }
+            padding: toRem(10) toRem(0);
+            @include adaptiveValue("padding-left", 4, 2);
+            @include adaptiveValue("padding-right", 4, 2);
+            @include adaptiveValue("font-size", 16, 12);
+          }
+        }
+      }
+    }
+  }
+  .nonadaptive-table {
+    width: toRem(1110);
+    align-items: flex-start;
+  }
+  .halfadaptive-table {
+    @media (max-width: toEm(950)) {
+      width: toRem(950);
+      align-items: flex-start;
+    }
+  }
+  .fullscale-table {
+    & tbody {
+      width: 100%;
+      & tr {
+        width: 100%;
+        & td {
+          width: 20%;
+        }
+      }
+    }
+  }
+  .wizual-ref {
+    text-decoration: underline;
+    cursor: pointer;
+    color: var(--button-color--1);
+  }
+  // --------------------------------------------
+  .li-no-dot-list {
+    list-style-type: none !important;
+    & li {
+      &::before {
+        visibility: hidden !important;
+        opacity: 0 !important;
+      }
+      &::marker {
+        content: "";
+      }
+    }
+  }
+  & ul {
+    margin-left: toRem(5);
+    margin-bottom: toRem(25);
+    margin-left: toRem(-3);
+    & li {
+      position: relative;
+      @extend %default-text;
+      @include adaptiveValue("padding-left", 20, 18);
+      &:not(:last-child) {
+        @include adaptiveValue("margin-bottom", 15, 10);
+      }
+      &::before {
+        content: "";
+        position: absolute;
+        left: toRem(5);
+        top: 50%;
+        transform: translateY(-50%);
+        width: toRem(8);
+        height: toRem(8);
+        background-color: var(--main-text);
+        border-radius: 50%;
+      }
+      & ul {
+        & li {
+        }
+      }
+    }
+    & li:has(> ul),
+    & li:has(> ol) {
+      &::before {
+        visibility: hidden;
+        opacity: 0;
+      }
+    }
+    .li-no-dot {
+      &::before {
+        visibility: hidden;
+        opacity: 0;
+      }
+    }
+
+    // Для різних стилів кружочка li круг
+    .ul-circle {
+      & li {
+        &::before {
+          content: "";
+          position: absolute;
+          left: toRem(5);
+          top: 50%;
+          transform: translateY(-50%);
+          width: toRem(8);
+          height: toRem(8);
+          background-color: var(--Black-text);
+          border: toRem(2) solid var(--main-text);
+          border-radius: 50%;
+        }
+      }
+    }
+    // li квадраат
+    .ul-square {
+      & li {
+        &::before {
+          content: "";
+          position: absolute;
+          left: toRem(5);
+          top: 50%;
+          transform: translateY(-50%);
+          width: toRem(8);
+          height: toRem(8);
+          background-color: var(--main-text);
+          border-radius: 0%;
+        }
+      }
+    }
+  }
+  .ul-list-inside {
+    margin-left: toRem(5);
+    margin-bottom: toRem(25);
+    margin-top: toRem(10);
+    & li {
+      position: relative;
+      @extend %default-text;
+      @include adaptiveValue("padding-left", 20, 18);
+      &:not(:last-child) {
+        @include adaptiveValue("margin-bottom", 15, 10);
+      }
+      &::before {
+        content: "";
+        position: absolute;
+        left: toRem(5);
+        top: 50%;
+        transform: translateY(-50%);
+        width: toRem(8);
+        height: toRem(8);
+        background-color: var(--main-text);
+        border-radius: 50%;
+        display: block;
+      }
+    }
+  }
+  & ol {
+    margin-left: toRem(12);
+    margin-bottom: toRem(25);
+    padding-left: toRem(10);
+    & li {
+      list-style-type: decimal; // Треба в Safari
+      position: relative;
+      @extend %default-text;
+      @include adaptiveValue("padding-left", 20, 18);
+      &:not(:last-child) {
+        @include adaptiveValue("margin-bottom", 15, 10);
+      }
+      @include adaptiveValue("padding-left", 4, 2);
+      &::before {
+        content: "";
+        position: absolute;
+        left: toRem(2);
+        top: 50%;
+        transform: translateY(-50%);
+        width: toRem(6);
+        height: toRem(6);
+        background-color: var(--main-text);
+        border-radius: 50%;
+        display: none;
+      }
+    }
+    & > li {
+      &::marker {
+        color: var(--main-text);
+        font-weight: bold;
+        unicode-bidi: isolate;
+        font-variant-numeric: tabular-nums;
+        text-transform: none;
+        text-indent: toRem(0) !important;
+        text-align: start !important;
+        text-align-last: start !important;
+      }
+    }
+    & ul {
+      margin-left: toRem(5);
+      margin-bottom: toRem(25);
+      margin-top: toRem(10);
+      & li {
+        list-style: none; // Треба в Safari
+        position: relative;
+        @extend %default-text;
+        @include adaptiveValue("padding-left", 20, 18);
+        &:not(:last-child) {
+          @include adaptiveValue("margin-bottom", 15, 10);
+        }
+        &::before {
+          content: "";
+          position: absolute;
+          left: toRem(5);
+          top: 50%;
+          transform: translateY(-50%);
+          width: toRem(8);
+          height: toRem(8);
+          background-color: var(--main-text);
+          border-radius: 50%;
+          display: block;
+        }
+      }
+    }
+  }
+}
+// Особлива таблиця 1
+.one-td-table {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+  row-gap: toRem(15);
+  margin-bottom: toRem(25);
+  & strong {
+    font-weight: bold;
+    border-bottom: toRem(1) solid var(--main-text);
+    padding: 0 toRem(5) toRem(10) toRem(5);
+    flex: 1 1 33%;
+    @media (max-width: toEm($huge-mobile-adaptive)) {
+      flex: 0 1 100%;
+    }
+  }
+}
+.listed {
+  margin-bottom: 0;
+  & li {
+    padding-left: 0;
+    margin-bottom: toRem(0) !important;
+    & :not(:last-child) {
+      margin-bottom: toRem(0) !important;
+    }
+
+    &::before {
+      display: none !important;
+    }
+  }
+}

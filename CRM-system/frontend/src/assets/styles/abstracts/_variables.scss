@@ -1,0 +1,123 @@
+// Мінімальна ширина сторінки
+$minWidth: 320;
+// Ширина полотна (макету)
+$maxWidth: 1440;
+// Ширина обмежуючого контейнера (0 = немає обмеження)
+$maxWidthContainer: 1140;
+// Загальний відступ у контейнера
+// (30 = по 15px ліворуч і праворуч, 0 = немає відступу)
+$containerPadding: 30;
+// Ширина спрацьовування першого брейкпоінту
+$containerWidth: $maxWidthContainer + $containerPadding;
+
+// Змінні основних медіа брейкпоінтів
+// Показуємо контент беспечно для усіх ПК моніторів
+$pc-adaptive: 1250;
+// Показуємо контент беспечно для усіх планшетів
+$tablet-adaptive: 991.98;
+// Показуємо контент беспечно для усіх великих мобільних
+$huge-mobile-adaptive: 767.98;
+// Стилі для маленьких мобільних
+$small-mobile-adaptive: 479.98;
+// Стилі для Конкретного хедеру
+$custom-header-adaptive: 1250;
+
+$general-border-radius: 16px;
+
+$header-bg: #34495e;
+$footer-bg: #34495e;
+$container-bg: #34495e;
+$main-bg: #2d3e50;
+$table-bg-1: #2a3b4b;
+$table-bg-2: #304b5c;
+$main-text: #FFFFFF;
+$header-text: #FFFFFF;
+$footer-text: #FFFFFF;
+
+$button-color--1: #1a8750;
+$button-color--2: #c7691d;
+$button-color--3: #1a8750;
+$button-color--4: #fc8425;
+$button-color--5: #cc3230;
+$button-color--6: #cc3230;
+
+$placeholder-text: rgb(204, 204, 204);
+$banner-highlight-span-text: #ebba35;
+
+$White-text: #ffffff;
+$Black-text: #000000;
+
+$AlwaysWhite-text: #ffffff;
+$AlwaysBlack-text: #000000;
+
+$Burger-button: #ffffff;
+$Close-button: #ffffff;
+$Go-top-arrow: #ffffff;
+
+:root {
+    --custom-header-adaptive: #{$custom-header-adaptive};
+
+    --header-bg: #{$header-bg};
+    --footer-bg: #{$footer-bg};
+    --container-bg: #{$container-bg};
+    --main-bg: #{$main-bg};
+    --table-bg-1: #{$table-bg-1};
+    --table-bg-2: #{$table-bg-2};
+    --main-text: #{$main-text};
+    --header-text: #{$header-text};
+    --footer-text: #{$footer-text};
+
+    --button-color--1: #{$button-color--1};
+    --button-color--2: #{$button-color--2};
+    --button-color--3: #{$button-color--3};
+    --button-color--4: #{$button-color--4};
+    --button-color--5: #{$button-color--5};
+    --button-color--6: #{$button-color--6};
+
+    --placeholder-text: #{$placeholder-text};
+    --banner-highlight-span-text: #{$banner-highlight-span-text};
+
+    --White-text: #{$White-text};
+    --Black-text: #{$Black-text};
+
+    --AlwaysWhite-text: #{$AlwaysWhite-text};
+    --AlwaysBlack-text: #{$AlwaysBlack-text};
+
+    --Burger-button: #{$Burger-button};
+    --Close-button: #{$Close-button};
+    --Go-top-arrow: #{$Go-top-arrow};
+
+}
+
+// щоб працювало в стилях має бути тепер записано отак через css змінну
+// .header {background: var(--header-bg); // ✅}
+
+[data-theme="dark"] {
+    --header-bg: #34495e;
+    --footer-bg: #34495e;
+    --container-bg: #34495e;
+    --main-bg: #2d3e50;
+    --table-bg-1: #2a3b4b;
+    --table-bg-2: #304b5c;
+    --main-text: #ffffff;
+    --header-text: #ffffff;
+    --footer-text: #ffffff;
+
+    --button-color--1: #1a8750;
+    --button-color--2: #fc8425;
+    --button-color--3: #1a8750;
+    --button-color--4: #fc8425;
+    --button-color--5: #cc3230;
+    --button-color--6: #cc3230;
+
+    --placeholder-text: rgb(138, 138, 138);
+    --banner-highlight-span-text: #ebba35;
+
+    --White-text: #000000;
+    --Black-text: #ffffff;
+
+    --Burger-button: #ffffff;
+    --Close-button: #ffffff;
+    --Go-top-arrow: #ffffff;
+  
+}

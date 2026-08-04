@@ -1,0 +1,192 @@
+@use "/src/assets/styles/abstracts/index" as *;
+
+.footer {
+  padding-bottom: toRem(10);
+  background: var(--footer-bg);
+  @include adaptiveValue("padding-top", 40, 16);
+  @include adaptiveValue("padding-bottom", 40, 16);
+  @include adaptiveValue("padding-left", 40, 8);
+  @include adaptiveValue("padding-right", 40, 8);
+  // .footer__container
+  &__container {
+    padding: toRem(0);
+  }
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    @include adaptiveValue("row-gap", 16, 8);
+  }
+  &__logo {
+    & img {
+      width: toRem(56);
+      height: toRem(56);
+    }
+    margin-bottom: toRem(12);
+  }
+  &__link_zone {
+    display: flex;
+    @include adaptiveValue("column-gap", 80, 20);
+    @media (max-width: toEm($huge-mobile-adaptive)) {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+  &__linkContainer {
+    display: flex;
+    @include adaptiveValue("column-gap", 60, 20);
+    @include adaptiveValue("row-gap", 30, 30);
+    @media (max-width: toEm($huge-mobile-adaptive)) {
+      flex-wrap: wrap;
+      justify-content: center;
+      
+    }
+  }
+  // .footer__links
+  &__links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: toRem(35);
+    row-gap: toRem(6);
+    flex-wrap: wrap;
+    @media (max-width: toEm($huge-mobile-adaptive)) {
+      row-gap: toRem(6);
+    }
+    & li {
+      & a {
+        @extend %default-font;
+        font-size: toRem(13);
+        font-weight: 400;
+        line-height: toRem(16);
+        color: var(--Black-text);
+        transition: 0.3s;
+        @extend %smooth-underlining;
+        &:hover {
+          color: var(--button-color--4);
+        }
+        &::before {
+          background-color: var(--button-color--4);
+        }
+        @media (max-width: toEm($huge-mobile-adaptive)) {
+          font-size: toRem(14);
+          line-height: toRem(16);
+        }
+      }
+    }
+  }
+
+  &__img_zone {
+    display: flex;
+    @include adaptiveValue("column-gap", 80, 20);
+    @media (max-width: toEm($huge-mobile-adaptive)) {
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      margin-top: toRem(12);
+    }
+  }
+  &__socialContainer {
+    display: flex;
+    @include adaptiveValue("column-gap", 16, 8);
+    & a {
+      & img {
+        width: toRem(32);
+        height: toRem(32);
+      }
+    }
+  }
+  &__paymentContainer {
+    display: flex;
+    @include adaptiveValue("column-gap", 16, 8);
+    & img {
+      width: toRem(54);
+      height: toRem(32);
+    }
+  }
+  &__logo {
+  }
+  &__copyright {
+    @extend %default-font;
+    font-size: toRem(13);
+    font-weight: 400;
+    line-height: toRem(16);
+    color: var(--White-text);
+    text-align: center;
+    // @include adaptiveValue("margin-top", 20, 8);
+    @media (max-width: toEm($huge-mobile-adaptive)) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+}
+// ----GO-TOP-------------------------------------------------
+.goTop {
+  bottom: toRem(15);
+  @include adaptiveValue("width", 40, 40);
+  position: fixed;
+  right: -100%;
+  transition: right 0.5s;
+  z-index: 50;
+  &__button {
+    width: toRem(40);
+    height: toRem(40);
+    background-color: var(--button-color--2);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & img {
+      margin: auto;
+      width: toRem(40);
+      height: toRem(40);
+    }
+    transition: 0.3s;
+    &:hover {
+      transform: scale(1.05);
+      background-color: var(--button-color--6);
+    }
+  }
+  &.shown {
+    right: toRem(10);
+  }
+}
+
+.arrowGoUpperFloor {
+  width: toRem(26);
+  height: toRem(26);
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: toRem(5);
+    left: toRem(1);
+    transform: rotate(135deg);
+    width: toRem(15);
+    height: toRem(4);
+    background-color: var(--Go-top-arrow);
+    border-radius: toRem(10);
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    width: toRem(15);
+    height: toRem(4);
+    background-color: var(--Go-top-arrow);
+
+    transform: rotate(45deg);
+    top: toRem(5);
+    left: toRem(9.5);
+    border-radius: toRem(10);
+  }
+  &__stick {
+    position: absolute;
+    width: toRem(4);
+    height: toRem(22);
+    background-color: var(--Go-top-arrow);
+
+    top: toRem(2);
+    left: toRem(11);
+  }
+}
