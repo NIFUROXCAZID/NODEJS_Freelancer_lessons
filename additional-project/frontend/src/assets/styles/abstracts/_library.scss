@@ -1,0 +1,183 @@
+@use "sass:math";
+@use "./variables" as *;
+@use "./functions" as *;
+@use "./fonts" as *;
+
+:root {
+  --custom-header-adaptive: #{$custom-header-adaptive};
+}
+
+// Шаблон для хедера
+%header {
+  position: sticky;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 50;
+}
+
+// Тінь для контейнера
+%box-shadow {
+  box-shadow:
+    0 0 10px rgba(119, 119, 119, 0.5),
+    0 0 20px rgba(119, 119, 119, 0.4),
+    0 0 30px rgba(119, 119, 119, 0.3),
+    0 0 40px rgba(119, 119, 119, 0.2),
+    0 0 50px rgba(119, 119, 119, 0.1);
+}
+
+// Головний заголовок h1
+%main-title {
+  color: var(--main-text);
+  font-family: "main-font", sans-serif;
+  @include adaptiveValue("font-size", 34, 28);
+  font-weight: 600;
+  @include adaptiveValue("line-height", 30, 24);
+  @include adaptiveValue("margin-bottom", 25, 15);
+}
+
+// Звичайний заголовок h2
+%default-title {
+  color: var(--main-text);
+  font-family: "main-font", sans-serif;
+  font-weight: 500;
+  @include adaptiveValue("font-size", 30, 26);
+  @include adaptiveValue("line-height", 26, 22);
+}
+
+// Звичайний заголовок h3
+%sub-title-h3 {
+  color: var(--main-text);
+  font-family: "main-font", sans-serif;
+  font-weight: 400;
+  @include adaptiveValue("font-size", 26, 22);
+  @include adaptiveValue("line-height", 28, 24);
+  @include adaptiveValue("margin-bottom", 10, 5);
+}
+
+// Звичайний заголовок h4
+%sub-title-h4 {
+  color: var(--main-text);
+  font-family: "main-font", sans-serif;
+  font-weight: 400;
+  @include adaptiveValue("font-size", 22, 18);
+  @include adaptiveValue("line-height", 24, 20);
+  @include adaptiveValue("margin-bottom", 10, 5);
+}
+
+// Абзацний звичайний текст
+%default-text {
+  color: var(--main-text);
+  font-family: "main-font", sans-serif;
+  @include adaptiveValue("font-size", 16, 14);
+  font-weight: 400;
+  @include adaptiveValue("line-height", 20, 18);
+  word-spacing: toRem(1);
+}
+
+%default-font {
+  font-family: "main-font", sans-serif;
+}
+// Лінія післе заголовка
+%abzats-line {
+  &::after {
+    content: "";
+    width: 100%;
+    height: toRem(2);
+    background-color: var(--button-color--4);
+    border-radius: toRem(1);
+  }
+}
+
+// міксін для стилів по замовчанню на сторінці
+@mixin default-styles {
+  body {
+    font-family: "Arial", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    color: #101010;
+    line-height: 1.46;
+  }
+}
+
+// Шаблон для популярного контейнера
+%common-container {
+  max-width: toRem(1240);
+  padding-left: toRem(15);
+  padding-right: toRem(15);
+  margin: 0 auto;
+}
+
+// Шаблон для плавного підкреслення при ховері
+%smooth-underlining {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: toRem(-1);
+    left: 0;
+    width: 0%;
+    height: toRem(1);
+    background-color: var(--main-text);
+    transition: width 0.3s ease;
+  }
+  &:hover {
+    color: var(--main-text);
+    &::before {
+      width: 100%;
+    }
+  }
+}
+
+// Обривання тексту трьома крапками
+%text-dots {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+// Absolute центрування
+%abs-cent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+// Градієнтна кнопка
+%gradient-btn {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  opacity: 0;
+  visibility: hidden;
+}
+
+// Міксин для адаптивного зображення
+@mixin adaptive-image-settings(
+  $width: 100%,
+  $height: 100%,
+  $object-fit: cover,
+  $aspect-ratio: toRem(270) / toRem(270)
+) {
+  width: $width;
+  height: $height;
+  object-fit: $object-fit;
+  aspect-ratio: $aspect-ratio;
+}
+
+// Міксин для назви з декором попереду
+@mixin common-before-title($flex-basis: 11px, $width: 11px, $height: 11px, $bgColor: null, $borderRadius: 0px) {
+  content: "";
+  flex-basis: $flex-basis;
+  width: $width;
+  height: $height;
+  @if $bgColor != null {
+    background-color: $bgColor;
+  } @else {
+    background-color: var(--main-text);
+  }
+  border-radius: $borderRadius;
+}

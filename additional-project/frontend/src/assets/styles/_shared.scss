@@ -1,0 +1,683 @@
+@use "./abstracts/index" as *;
+// КЛАСИ ЗАГАЛЬНОГО ПРИЗНАЧЕННЯ АБО ТІ ЩО ЧАСТО СПЛИВАЮТЬ НА РІЗНИХ СТОРІНКАХ
+// АКТИВНА СТОРІНКА-----------------------------------------------------------
+.current-page--1 {
+  background-color: var(--AlwaysWhite-text) !important;
+  color: var(--AlwaysBlack-text) !important;
+}
+.current-page--2 {
+  color: var(--button-color--4) !important;
+}
+// ТИПИ БЕКГРАУНДІВ-----------------------------------------------------------
+.common-page {
+  background: var(--main-bg);
+}
+.products-page {
+  background: var(--container-bg);
+}
+// КФС СИМВОЛ-----------------------------------------------------------
+.red_symbol {
+  display: flex;
+  justify-content: center;
+  margin-top: toRem(-65);
+  @include adaptiveValue("margin-bottom", 50, 6);
+  @media (max-width: toEm($huge-mobile-adaptive)) {
+    margin-top: toRem(-30);
+  }
+  &__red {
+    width: toRem(40);
+    height: toRem(60);
+    background-color: var(--header-bg);
+  }
+  &__grey {
+    width: toRem(40);
+    height: toRem(60);
+    background-color: var(--main-bg);
+  }
+}
+
+.h1_footer {
+  font-size: toRem(42);
+  font-weight: 700;
+  text-align: center;
+  @include adaptiveValue("margin-bottom", 50, 6);
+  @media (max-width: toEm($huge-mobile-adaptive)) {
+    font-size: toRem(28);
+  }
+}
+.containerBg {
+  background-color: var(--container-bg);
+  padding-top: toRem(35);
+  padding-bottom: toRem(35);
+  @include adaptiveValue("padding-left", 25, 6);
+  @include adaptiveValue("padding-right", 25, 6);
+  margin-top: toRem(30);
+  margin-bottom: toRem(30);
+  border-radius: $general-border-radius;
+}
+// Популярна кнопка для всякого
+.defaultButton {
+  @extend %default-font;
+  font-weight: 700;
+  font-size: toRem(18);
+  line-height: toRem(18);
+  padding: toRem(12) toRem(20);
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  width: auto;
+  min-width: toRem(120);
+  max-width: 100%;
+  min-height: auto;
+  transition: 0.3s;
+  border-radius: $general-border-radius;
+  color: var(--AlwaysWhite-text);
+  background: var(--button-color--2);
+  // border: toRem(2) solid var(--AlwaysWhite-text);
+  & span {
+    position: relative;
+    z-index: 15;
+  }
+  &--img {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: toRem(16);
+    background: var(--button-color--3);
+    padding: toRem(6) toRem(20);
+  }
+  &__popupShow {
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    pointer-events: none;
+    width: 100%;
+    padding: toRem(10);
+    border-radius: toRem(20);
+    color: #000;
+    text-align: center;
+    transition: all 0.6s;
+    background-color: #fff;
+  }
+  &:hover {
+    color: var(--White-text);
+    background: var(--button-color--3);
+  }
+}
+.defaultButton__popupShow.isVisible {
+  opacity: 1;
+  transform: translateY(-2em);
+}
+
+.flex_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.kfc_off_ref {
+  font-weight: 500;
+  color: var(--button-color--3);
+  text-decoration: underline;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    color: var(--button-color--6);
+  }
+}
+// Класичні стилі для форми
+.defaultForm {
+  // .messege__form
+  &--center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @extend %default-text;
+    & p {
+      @extend %default-text;
+      color: black;
+      margin-bottom: 12px;
+    }
+  }
+  &__inputsWrapper {
+    max-width: toRem(800);
+    width: 100%;
+    @include adaptiveValue("margin-bottom", 20, 14);
+    &--center {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  // .messege__label-email
+  &__label {
+    @extend %default-text;
+    font-weight: 500;
+    font-size: toRem(16);
+    margin-bottom: toRem(4);
+  }
+  // .messege__field-email
+  &__fieldInput {
+    @extend %default-font;
+    @include adaptiveValue("font-size", 20, 14);
+    font-weight: 400;
+    line-height: toRem(34);
+    color: var(--main-text);
+    width: 100%;
+    padding: toRem(5);
+    display: block;
+    border-radius: $general-border-radius;
+    background-color: var(--table-bg-2);
+    border: toRem(2) solid var(--main-text);
+    &::placeholder {
+      color: var(--placeholder-text);
+    }
+    &:focus {
+      outline: none !important;
+      box-shadow: inset 0 0 toRem(10) var(--button-color--3) !important;
+    }
+  }
+  &__select {
+    @extend %default-font;
+    @include adaptiveValue("font-size", 20, 14);
+    font-weight: 400;
+    line-height: toRem(34);
+    padding: toRem(5);
+    display: block;
+    border-radius: $general-border-radius;
+    color: var(--main-text);
+    background-color: var(--table-bg-2);
+    border: toRem(2) solid var(--main-text);
+    width: 100%;
+    &:focus {
+      outline: none !important;
+      box-shadow: inset 0 0 toRem(10) var(--button-color--3) !important;
+    }
+  }
+  &__checkbox {
+    width: 30px;
+    height: 30px;
+  }
+  // .messege__textarea
+  &__textarea {
+    @extend %default-font;
+    @include adaptiveValue("font-size", 20, 14);
+    font-weight: 400;
+    line-height: toRem(34);
+    padding: toRem(5);
+    width: 100%;
+    height: toRem(120);
+    border-radius: $general-border-radius;
+    color: var(--main-text);
+    background-color: var(--table-bg-2);
+    display: block;
+    border: toRem(2) solid var(--main-text);
+    &::placeholder {
+      color: var(--placeholder-text);
+    }
+    &:focus {
+      outline: none !important;
+      box-shadow: inset 0 0 toRem(10) var(--button-color--3) !important;
+    }
+  }
+  &__errorYup {
+    @extend %default-font;
+    font-size: toRem(14);
+    font-weight: 600;
+    color: var(--button-color--4);
+  }
+  &__sended {
+    @extend %default-font;
+    font-size: toRem(18);
+    font-weight: 600;
+    text-align: center;
+  }
+  &__btn-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: toRem(20);
+  }
+  // .messege__send
+  &__send {
+    @extend %default-font;
+    font-weight: 700;
+    font-size: toRem(18);
+    line-height: toRem(18);
+    padding: toRem(12) toRem(20);
+    text-align: center;
+    display: inline-block;
+    text-transform: uppercase;
+    position: relative;
+    width: auto;
+    min-width: toRem(220);
+    max-width: 100%;
+    min-height: auto;
+    transition: 0.3s;
+    border-radius: $general-border-radius;
+    color: var(--AlwaysWhite-text);
+    background: var(--button-color--2);
+    &--img {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: toRem(16);
+      background: var(--button-color--2);
+      padding: toRem(6) toRem(20);
+    }
+    & span {
+      position: relative;
+      z-index: 15;
+    }
+    &:hover {
+      color: var(--White-text);
+      background: var(--button-color--3);
+    }
+  }
+}
+
+.errorBoundry {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  & p:not(:last-child) {
+    margin-bottom: toRem(15);
+  }
+  & button:not(:last-child) {
+    margin-bottom: toRem(15);
+  }
+}
+// --Класи для CRM----------------------------------------------------------
+.userEditBtn {
+  @extend %default-font;
+  font-weight: 700;
+  font-size: toRem(14);
+  line-height: toRem(14);
+  padding: toRem(10) toRem(10);
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  width: auto;
+  min-width: toRem(120);
+  max-width: 100%;
+  min-height: auto;
+  transition: 0.3s;
+  border-radius: $general-border-radius;
+  color: var(--AlwaysWhite-text);
+  background: var(--button-color--2);
+  // border: toRem(2) solid var(--AlwaysWhite-text);
+  & span {
+    position: relative;
+    z-index: 15;
+  }
+  &:hover {
+    color: var(--White-text);
+    background: var(--button-color--3);
+  }
+}
+
+.pagination {
+  @extend %default-font;
+  color: var(--White-text);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: 20px;
+  row-gap: 16px;
+  margin-bottom: 12px;
+  margin-top: 12px;
+  @media (max-width: toEm($small-mobile-adaptive)) {
+    // flex-direction: column;
+  }
+  &__btn {
+    @extend %default-font;
+    font-weight: 700;
+    font-size: toRem(14);
+    line-height: toRem(14);
+    padding: toRem(10) toRem(14);
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    width: auto;
+    // min-width: toRem(120);
+    max-width: 100%;
+    min-height: auto;
+    transition: 0.3s;
+    border-radius: $general-border-radius;
+    color: var(--AlwaysWhite-text);
+    background: var(--button-color--2);
+    // border: toRem(2) solid var(--AlwaysWhite-text);
+    & span {
+      position: relative;
+      z-index: 15;
+    }
+    &:hover {
+      color: var(--White-text);
+      background: var(--button-color--3);
+    }
+    &--num {
+      padding: toRem(10) toRem(14);
+      min-width: auto;
+      max-width: auto;
+    }
+  }
+}
+.centerBtn {
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  column-gap: 16px;
+  row-gap: 14px;
+}
+.selectWrap {
+  @extend %default-font;
+  color: var(--White-text);
+  // margin-top: 12px;
+  // margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 20px;
+}
+// ------------------------------------------
+// Стилі сортування
+.sort {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  column-gap: toRem(24);
+  row-gap: toRem(14);
+  margin-bottom: toRem(16);
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    // flex-direction: column;
+    align-items: center;
+    column-gap: toRem(24);
+    row-gap: toRem(14);
+    // margin-bottom: toRem(16);
+  }
+  &__inputWrap {
+    // max-width: toRem(120);
+    // width: 100%;
+    & input {
+      @extend %default-font;
+      @include adaptiveValue("font-size", 16, 14);
+      font-weight: 500;
+      line-height: toRem(18);
+      padding: toRem(10) toRem(12);
+      display: block;
+      border-radius: $general-border-radius;
+      max-width: toRem(120);
+      width: 100%;
+      color: var(--main-text);
+      background-color: var(--table-bg-2);
+      border: toRem(2) solid var(--main-text);
+      &::placeholder {
+        color: var(--placeholder-text);
+      }
+      &:focus {
+        outline: none !important;
+        box-shadow: inset 0 0 toRem(10) var(--button-color--2) !important;
+      }
+    }
+  }
+  &__typeBtnsWrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: toRem(14);
+    row-gap: toRem(14);
+  }
+  &__btn {
+    @extend %default-font;
+    font-weight: 600;
+    font-size: toRem(14);
+    line-height: toRem(14);
+    text-align: center;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    padding: toRem(4) toRem(8);
+    width: auto;
+    min-height: auto;
+    height: toRem(32);
+    transition: 0.3s;
+    border-radius: $general-border-radius;
+    color: var(--AlwaysWhite-text);
+    background: var(--button-color--3);
+    & span {
+      position: relative;
+      z-index: 15;
+    }
+    &:hover {
+      color: var(--AlwaysWhite-text);
+      background-color: var(--button-color--5);
+    }
+    &--active {
+      color: var(--White-text);
+      background: var(--Black-text);
+      &:hover {
+        color: var(--White-text);
+        background: var(--Black-text);
+      }
+    }
+  }
+  &__loveBtnsWrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: toRem(14);
+    row-gap: toRem(14);
+    & button {
+      @extend %default-font;
+      font-weight: 600;
+      font-size: toRem(14);
+      line-height: toRem(14);
+      text-align: center;
+      text-transform: uppercase;
+      padding: toRem(4) toRem(8);
+      display: inline-block;
+      position: relative;
+      width: auto;
+      min-height: auto;
+      height: toRem(32);
+      transition: 0.3s;
+      border-radius: $general-border-radius;
+      color: var(--AlwaysWhite-text);
+      background: var(--button-color--3);
+      & span {
+        position: relative;
+        z-index: 15;
+      }
+      &:hover {
+        color: var(--White-text);
+        background: var(--Black-text);
+      }
+    }
+  }
+}
+.dropFilter {
+  font-size: 14px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+input[type="search"]::-webkit-search-cancel-button {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  column-gap: 14px;
+  & label {
+    margin-bottom: 0;
+  }
+}
+
+.dataTable {
+  @extend %default-font;
+  font-weight: 500;
+  font-size: toRem(14);
+  line-height: toRem(24);
+}
+
+.tableText {
+  // width: 100%;
+  max-width: 250px;
+  text-align: left;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+.tableTitle {
+  text-decoration: underline;
+  transition: 0.3s;
+  font-weight: 600;
+  // width: 100%;
+  // color: var(--button-color--2);
+  &:hover {
+    color: var(--button-color--3);
+  }
+}
+
+.tableSmallCol {
+  max-width: 100px;
+  text-align: center;
+}
+
+.defaultForm__fieldInput[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
+.product {
+  @extend %default-font;
+  font-weight: 500;
+  font-size: toRem(18);
+  // line-height: toRem(24);
+  margin-bottom: 12px;
+  &__title {
+  }
+  &__price {
+  }
+  &__dids {
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+    row-gap: 12px;
+  }
+  &__dec {
+    @extend %default-font;
+    font-weight: 600;
+    font-size: toRem(14);
+    line-height: toRem(14);
+    text-align: center;
+    text-transform: uppercase;
+    padding: toRem(4) toRem(8);
+    display: inline-block;
+    position: relative;
+    width: auto;
+    min-height: auto;
+    height: toRem(32);
+    transition: 0.3s;
+    border-radius: $general-border-radius;
+    color: var(--AlwaysWhite-text);
+    background: var(--Black-text);
+    & span {
+      position: relative;
+      z-index: 15;
+    }
+    &:hover {
+      color: var(--White-text);
+      background: var(--button-color--3);
+    }
+  }
+  &__inc {
+    @extend %default-font;
+    font-weight: 600;
+    font-size: toRem(14);
+    line-height: toRem(14);
+    text-align: center;
+    text-transform: uppercase;
+    padding: toRem(4) toRem(8);
+    display: inline-block;
+    position: relative;
+    width: auto;
+    min-height: auto;
+    height: toRem(32);
+    transition: 0.3s;
+    border-radius: $general-border-radius;
+    color: var(--AlwaysWhite-text);
+    background: var(--Black-text);
+    & span {
+      position: relative;
+      z-index: 15;
+    }
+    &:hover {
+      color: var(--White-text);
+      background: var(--button-color--3);
+    }
+  }
+  &__quantity {
+    font-weight: 600;
+  }
+  &__remove {
+    @extend %default-font;
+    font-weight: 600;
+    font-size: toRem(14);
+    line-height: toRem(14);
+    text-align: center;
+    text-transform: uppercase;
+    padding: toRem(4) toRem(8);
+    display: inline-block;
+    position: relative;
+    width: auto;
+    min-height: auto;
+    height: toRem(32);
+    transition: 0.3s;
+    border-radius: $general-border-radius;
+    color: var(--AlwaysWhite-text);
+    background: var(--Black-text);
+    & span {
+      position: relative;
+      z-index: 15;
+    }
+    &:hover {
+      color: var(--White-text);
+      background: var(--button-color--3);
+    }
+  }
+}
+

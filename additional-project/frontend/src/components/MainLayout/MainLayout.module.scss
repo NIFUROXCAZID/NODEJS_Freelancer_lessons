@@ -1,0 +1,65 @@
+@use "/src/assets/styles/abstracts/index" as *;
+
+.wrapper {
+    // ДЛЯ АЙФОНІВ
+    min-height: 100vh;
+    min-height: 100dvh;
+    min-height: 100svh;
+
+    overflow: clip;
+    display: flex;
+    flex-direction: column;
+    background: var(--main-bg);
+  }
+  .wrapper > main {
+    flex-grow: 1;
+  }
+  .main {
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+  // @include adaptiveValue("padding-left", 25, 7);
+  // @include adaptiveValue("padding-right", 25, 7);
+  flex: 1;
+  // Якщо потрібен сайдбер то розкоментувать те знизу
+  // @media (min-width: toEm($custom-header-adaptive)) {
+  //     // left или right для нужной сторони
+  //     @include adaptiveValue("padding-left", 312, 220, 0, 1170, 768);
+  //     margin-left: toRem(15);
+  // }
+
+  &__container {
+    box-shadow: 0 5px 13px rgb(50 50 40 / 30%);
+    border: 1px solid var(--table-bg-1);
+    background: var(--container-bg);
+    @extend %common-container;
+    width: 100%;
+    padding-top: toRem(35);
+    padding-bottom: toRem(35);
+    @include adaptiveValue("padding-left", 25, 10);
+    @include adaptiveValue("padding-right", 25, 10);
+    margin-top: toRem(30);
+    margin-bottom: toRem(30);
+    border-radius: $general-border-radius;
+    // @extend %box-shadow;
+    @media (max-width: toEm($huge-mobile-adaptive)) {
+      padding-top: toRem(15);
+      padding-bottom: toRem(15);
+      margin-top: toRem(15);
+      margin-bottom: toRem(15);
+    }
+    & > section {
+      margin-top: toRem(20);
+      margin-bottom: toRem(35);
+    }
+    & > :last-child {
+      margin-bottom: 0;
+    }
+    & > :first-child {
+      margin-top: 0;
+    }
+  }
+}
+// -------------------------------------------------------

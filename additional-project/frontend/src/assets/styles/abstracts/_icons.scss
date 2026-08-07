@@ -1,0 +1,79 @@
+[class^="icon_"],
+[class*=" icon_"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: "icomoon" !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+// Замінить оці частини і файли woff woff2 у fonts і все
+.icon_home:before {
+  content: "\e900";
+}
+.icon_cart:before {
+  content: "\e93a";
+}
+.icon_phone:before {
+  content: "\e942";
+}
+.icon_reviews:before {
+  content: "\e944";
+}
+.icon_location:before {
+  content: "\e948";
+}
+.icon_compass:before {
+  content: "\e94a";
+}
+.icon_calendar:before {
+  content: "\e953";
+}
+.icon_bubble:before {
+  content: "\e96b";
+}
+.icon_user:before {
+  content: "\e971";
+}
+.icon_user_tie:before {
+  content: "\e976";
+}
+.icon_stats_dots:before {
+  content: "\e99b";
+}
+.icon_stats_bars:before {
+  content: "\e99c";
+}
+.icon_spoon_knife:before {
+  content: "\e9a3";
+}
+.icon_sun:before {
+  content: "\e9d4";
+}
+.icon_brightness_contrast:before {
+  content: "\e9d6";
+}
+.icon_star_empty:before {
+  content: "\e9d7";
+}
+.icon_star_half:before {
+  content: "\e9d8";
+}
+.icon_star_full:before {
+  content: "\e9d9";
+}
+.icon_heart:before {
+  content: "\e9da";
+}
+.icon_heart_broken:before {
+  content: "\e9db";
+}
+.icon_IcoMoon:before {
+  content: "\eaea";
+}
